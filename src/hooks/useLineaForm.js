@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export const useLineaForm = ({_defaultCampos = {}}) => {
+export const useLineaForm = (_defaultCampos = {}) => {
     
     const [campos, setCampos] = useState(_defaultCampos);
 
@@ -42,5 +42,9 @@ export const useLineaForm = ({_defaultCampos = {}}) => {
 
     const lineaValida = ()=>Object.values(campos).reduce((estado,campo)=>estado || campo.valido,false);
 
-    return [campos,lineaValida,handleCampoChange];
+
+    const reset = ()=>{ setCampos(_defaultCampos) }
+
+
+    return [campos,lineaValida,handleCampoChange,reset];
 }

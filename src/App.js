@@ -1,55 +1,89 @@
-import React from 'react';
-import { CampoLista } from './Formulario/CampoLista/CampoLista';
-import { CampoSimple } from './Formulario/CampoSimple/CampoSimple';
-import { Formulario } from './Formulario/Formulario';
-import { LineaFormulario } from './Formulario/LineaFormulario';
+import React, { useState } from 'react';
 
 export const App = ()=> {
+  
+  const campos = ['asunto','archivo'];
+
+  const [archivosCargados, setArchivosCargados] = useState([]);
+
   return (
+
     <>
       <header > 
+
         Formulario 
       </header>
       
       <main>
-          <Formulario _titulo={'Formulario'}>
-            <LineaFormulario _id={1} _leyenda={'Datos Personales'} >
-              <CampoSimple 
-                _etiqueta='Nombre'
-                defaultValue={''}
-                name='nom'
-                type='text'
-              />
-              <CampoSimple 
-                defaultValue={''}
-                _etiqueta='Apellido'
-                name='ape'
-                type='text'
-              />
-            </LineaFormulario>
-            <LineaFormulario _id={2} _leyenda={'Otros Datos'}>
-              <CampoSimple 
-                _etiqueta='Tel'
-                defaultValue={''}
-                name='tel'
-                type='text'
-              />
-              <CampoLista _leyenda={'Direcciones'} _nom={'direcciones'}>
-                <CampoSimple 
-                  _etiqueta ='Direccion'
-                  defaultValue={''}
-                  name='dir'
-                  type='text'
-                />
-                <CampoSimple 
-                  _etiqueta ='C.P.'
-                  defaultValue={''}
-                  name='cp'
-                  type='text'
-                />
-              </CampoLista>
-            </LineaFormulario>
-          </Formulario>
+          <form 
+            encType='multipart/form-data'
+            onSubmit={ (e)=> {
+              e.preventDefault();
+
+              const formData = new FormData();
+              
+              campos.forEach( nomCampo => 
+                  formData.append(
+                    nomCampo,
+                    e.target[nomCampo].type ==='file' 
+                      ? e.target[nomCampo].files[0]
+                      : e.target[nomCampo].value
+                  )
+                )
+
+
+              fetch('http://localhost:4000/upload',{
+                method : 'POST',
+                body : formData
+              })
+              .then(resp => resp.json())
+              .then(data => setArchivosCargados(data.data.archivosCargados))
+
+          }} >
+            <fieldset>
+              <legend>Carga de Archivos</legend>
+              <label> 
+                <span>Asunto : </span> 
+                <input id='asunto'
+                    nom='asunto'
+                    type={'tex'}
+                    defaultValue = {''} 
+                      />
+              </label>
+              <label> 
+                <span>Seleccione : </span> 
+                <input id='archivo'
+                    nom='archivo'
+                    type={'file'}
+                    defaultValue = {''} 
+
+                  /> 
+              </label>
+            </fieldset>
+            <fieldset>
+              <input type={'submit'}  value='Upload' /> 
+            </fieldset>
+          </form>
+          <ul>
+              {
+                archivosCargados.map( nomArchivo => 
+                    <li>
+                      <i className="fa-sharp fa-solid fa-file-pdf"></i>
+                       - {nomArchivo}
+                       <button onClick={
+                          (e)=> {
+                            e.preventDefault();
+                            fetch(`http://localhost:4000/${nomArchivo}`,{method:'DELETE'})
+                              .then(resp => resp.json())
+                              .then(data => setArchivosCargados(data.data.archivosCargados))
+                          } 
+                          
+                        
+                        } > x </button>
+                    </li>
+                  )
+              }
+          </ul>
       </main>
       
       <footer> Formulario </footer>

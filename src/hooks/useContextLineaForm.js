@@ -5,12 +5,14 @@ export const useContextLineaForm = ()=>{
     const {
        campos,
        lineaValida,
-       handleCampoChange
+       handleCampoChange,
+       reset
     } = useContext(ContextLineaForm);
 
-    return  {
+    return  ({
         campos,
         lineaValida,
+        reset,
         handleCampoChange
-     };
+     });
 }

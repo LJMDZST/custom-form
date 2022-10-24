@@ -7,13 +7,13 @@ export const getDefaultCampos = ( campos )=>{
             (defaultCampos , campo )=>({
                 ...defaultCampos,
                 [campo.props.name] : {
-                    valor : campo.props.defaultValue,
+                    value : campo.props.defaultValue,
                     valido : campo.props.defaultValue ? true : false
                 }
             }),{} )
         : {
             [campos.props.name] : {
-                valor : campos.props.defaultValue,
+                value : campos.props.defaultValue,
                 valido : campos.props.defaultValue ? true : false
             }
         }

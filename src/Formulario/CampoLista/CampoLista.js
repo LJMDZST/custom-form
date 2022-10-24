@@ -16,9 +16,9 @@ export const CampoLista = ({children , _leyenda , _nom }) => {
     handleCampoChange : handleListaChange 
   } = useContextLineaForm();
 
-  const [campos,lineaValida,handleCampoChange ] = useLineaForm( getDefaultCampos(children) );
+  const [campos,lineaValida,handleCampoChange, reset] = useLineaForm( getDefaultCampos(children) );
 
-  const [listaRegistros, setListaRegistros] = useState(campos[_nom] || [])
+  const [listaRegistros, setListaRegistros] = useState(camposLinea[_nom] || [])
     
   const handleAddRegistro = (e)=>{
     e.preventDefault();
@@ -29,9 +29,11 @@ export const CampoLista = ({children , _leyenda , _nom }) => {
         name : _nom,
         value : listaRegistros ,
         validity : {
-            valid : true
+            valid : lineaValida()
         }
-    })
+    });
+
+    reset();
   
  }
     

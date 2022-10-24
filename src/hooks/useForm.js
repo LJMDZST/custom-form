@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export const useForm = ({ _defaultLineas = {} }) => {
+export const useForm = ( _defaultLineas = {} ) => {
     
     const [lineas, setLineas] = useState(_defaultLineas)
 
