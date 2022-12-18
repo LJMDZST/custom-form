@@ -1,29 +1,49 @@
-import React, { useState } from 'react'
+import  { useState } from 'react';
+import { armarEstructuraDataForm } from '../helpers/armarEstructuraDataForm';
 
-export const useForm = ( _defaultLineas = {} ) => {
+export const useForm = ( _estadoInicial = {} ) => {
     
-    const [lineas, setLineas] = useState(_defaultLineas)
+    const [campos, setCampos] = useState( armarEstructuraDataForm ( _estadoInicial) );
 
-    const formValido = ()=> lineas.reduce( 
-            (estado,linea) => estado || linea.esValida , 
-            false
-        );
-
-    const handleLineaChange = ({idLinea , esValida , camposLinea  })=>{
-        if( esValida ){
-            setLineas({
-                ...lineas,
-                [idLinea] : {
-                    ...camposLinea
-                }
-            })
-        }
+    const validarCampo = ({
+        patternMismatch,
+        rangeOverflow,
+        rangeUnderflow,
+        stepMismatch,
+        tooLong,
+        tooShort,
+        typeMismatch,
+        valid,
+        valueMissing,
+    })=>{
+        let error = '';
+        error += patternMismatch ? 'Caracteres no válidos' : ''; 
+        error += rangeOverflow ? 'Valor muy alto': '';
+        error += rangeUnderflow ? 'Valor muy bajo': '';
+        error += (typeMismatch || stepMismatch) ? 'valor inválido': '';
+        error += tooLong ? 'demasiados caracteres': '';
+        error += tooShort ? 'faltan caracteres': '';
+        error += valueMissing ? 'campo obligatorio': '' ;
+      
+        return ({
+            valido : valid,
+            msgError : error 
+        })
     }
 
-    const reset = ()=>{
-        setLineas(_defaultLineas);
+    const handleCampoChange = ({name,value,validity})=>{
+        setCampos({
+            ...campos,
+            [name] : {
+                value : value,
+                valido : validarCampo(validity) 
+            }
+        })
     }
 
 
-    return [lineas,handleLineaChange,formValido,reset];
+    const reset = ()=>{ setCampos(_estadoInicial) }
+
+
+    return [campos,handleCampoChange,reset];
 }

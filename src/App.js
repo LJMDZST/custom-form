@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { startMostrarFormProyecto } from './actions/p';
+import { Campo } from './Formulario/CampoSimple/Campo';
+import { Formulario } from './Formulario/Formulario';
 
 export const App = ()=> {
   
-  const campos = ['asunto','archivo'];
+  // const campos = ['asunto','archivo'];
 
-  const [archivosCargados, setArchivosCargados] = useState([]);
+  // const [archivosCargados, setArchivosCargados] = useState([]);
 
+  const {pFocus} = useSelector(state => state.pReducer);
+
+  const dispatch = useDispatch()
+
+  useEffect(() => { dispatch(startMostrarFormProyecto()) }, [])
+  
   return (
 
     <>
@@ -14,78 +24,14 @@ export const App = ()=> {
         Formulario 
       </header>
       
-      <main>
-          <form 
-            encType='multipart/form-data'
-            onSubmit={ (e)=> {
-              e.preventDefault();
-
-              const formData = new FormData();
-              
-              campos.forEach( nomCampo => 
-                  formData.append(
-                    nomCampo,
-                    e.target[nomCampo].type ==='file' 
-                      ? e.target[nomCampo].files[0]
-                      : e.target[nomCampo].value
-                  )
-                )
-
-
-              fetch('http://localhost:4000/upload',{
-                method : 'POST',
-                body : formData
-              })
-              .then(resp => resp.json())
-              .then(data => setArchivosCargados(data.data.archivosCargados))
-
-          }} >
-            <fieldset>
-              <legend>Carga de Archivos</legend>
-              <label> 
-                <span>Asunto : </span> 
-                <input id='asunto'
-                    nom='asunto'
-                    type={'tex'}
-                    defaultValue = {''} 
-                      />
-              </label>
-              <label> 
-                <span>Seleccione : </span> 
-                <input id='archivo'
-                    nom='archivo'
-                    type={'file'}
-                    defaultValue = {''} 
-
-                  /> 
-              </label>
-            </fieldset>
-            <fieldset>
-              <input type={'submit'}  value='Upload' /> 
-            </fieldset>
-          </form>
-          <ul>
-              {
-                archivosCargados.map( nomArchivo => 
-                    <li>
-                      <i className="fa-sharp fa-solid fa-file-pdf"></i>
-                       - {nomArchivo}
-                       <button onClick={
-                          (e)=> {
-                            e.preventDefault();
-                            fetch(`http://localhost:4000/${nomArchivo}`,{method:'DELETE'})
-                              .then(resp => resp.json())
-                              .then(data => setArchivosCargados(data.data.archivosCargados))
-                          } 
-                          
-                        
-                        } > x </button>
-                    </li>
-                  )
-              }
-          </ul>
-      </main>
-      
+      {
+        pFocus && 
+          
+          <Formulario _estadoInicial={ pFocus ? pFocus : {} } >
+            <Campo id='problemaAbordar' name='problemaAbordar' type='textarea' etiqueta='Problema a Abordar' />
+          </Formulario>
+          
+      }
       <footer> Formulario </footer>
     </>
   );

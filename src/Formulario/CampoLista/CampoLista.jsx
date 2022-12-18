@@ -1,22 +1,22 @@
 import React, { useState } from 'react'
-import { ContextLineaForm } from '../../contexts/ContextLineaForm';
-import { getDefaultCampos } from '../../helpers/getDefaultCampos';
+import { ContextLineaForm } from '../../contexts/ContextListaForm';
+import { useContextForm } from '../../hooks/useContextForm';
 import { useContextLineaForm } from '../../hooks/useContextLineaForm'
-import { useLineaForm } from '../../hooks/useLineaForm';
+
 
 /**
  * 
  * @param {*} param0 
  * @returns JSX fieldset con leyenda y lista de CampoSimple mas boton agregar
  */
-export const CampoLista = ({children , _leyenda , _nom }) => {
+export const CampoLista = ({children , _leyenda , _nom, _labelAgregarRegistro = 'Agregar' }) => {
 
   const {
     campos : camposLinea,
     handleCampoChange : handleListaChange 
   } = useContextLineaForm();
 
-  const [campos,lineaValida,handleCampoChange, reset] = useLineaForm( getDefaultCampos(children) );
+  const  {campos,handleCampoChange,reset} = useContextForm();
 
   const [listaRegistros, setListaRegistros] = useState(camposLinea[_nom] || [])
     
@@ -25,7 +25,7 @@ export const CampoLista = ({children , _leyenda , _nom }) => {
 
     setListaRegistros([...listaRegistros,{...campos}])
     
-    handleListaChange({
+    handleCampoChange({
         name : _nom,
         value : listaRegistros ,
         validity : {
@@ -49,7 +49,7 @@ export const CampoLista = ({children , _leyenda , _nom }) => {
                 children
             }
             <button onClick={handleAddRegistro} > 
-                + 
+              {_labelAgregarRegistro}
             </button>
             <ul>
                 {

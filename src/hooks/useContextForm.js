@@ -3,16 +3,14 @@ import { ContextFormulario } from "../contexts/ContextFormulario"
 
 export const useContextForm = ()=>{
     const {
-        lineas,
-        handleLineaChange,
-        formValido,
+        campos,
+        handleCampoChange,
         reset 
     } = useContext(ContextFormulario);
 
     return {
-        lineas,
-        handleLineaChange,
-        formValido,
-        reset
+        campos,
+        handleCampoChange,
+        reset 
     };
 }
