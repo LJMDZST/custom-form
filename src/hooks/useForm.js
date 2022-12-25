@@ -1,6 +1,14 @@
 import  { useState } from 'react';
 import { armarEstructuraDataForm } from '../helpers/armarEstructuraDataForm';
 
+/**
+ * 
+ * @param {*} _estadoInicial , JSON con los campos del formulario.
+ *                          useForm llama a armarEstructuraDataForm , 
+ *                          cada [clave] : <valor> -> [clave] : { value : <valor> , valido : { valido : true | false , msgError : string}}
+ * @returns [campos,handleCampoChange,reset]
+ */
+
 export const useForm = ( _estadoInicial = {} ) => {
     
     const [campos, setCampos] = useState( armarEstructuraDataForm ( _estadoInicial) );

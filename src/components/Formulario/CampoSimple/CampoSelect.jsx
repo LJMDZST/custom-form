@@ -23,7 +23,7 @@ export const CampoSelect = ({opciones , defaultValue ,value , handleCampoChange 
             {...campoProps} 
         >
         {
-            opciones.map( opc => <option>{opc}</option>)
+            opciones.map( opc => <option value={opc.id}>{opc.nom}</option>)
         }
         </select>
         {

@@ -1,5 +1,7 @@
 import { types } from "../types/types";
 
+
+
 const initialState = {
     listaP : null,
     pFocus : null

@@ -11,54 +11,10 @@ export const types = {
     baseAddProp : 'AGREGAR PROP FORMULARIO',
     baseReset : 'RESET BASES',
     
-    userLogin : 'LOGIN USUARIO',
-    userLogout : 'LOGOUT USUARIO',
-    userGetData : 'MOSTRAR DATOS USUARIO',
-    userGetTablaUsr : 'MOSTRAR TABLA USUARIOS',
-    checkRegister : 'VALIDAR REGISTRO',
-
-
-    ipGetData : 'MOSTRAR DATOS IP',
-    ipCrear : 'CREAR IP',
-    ipEditar : 'EDITAR IP',
-    ipReset : 'RESETEAR IP',
-
-    eippeGetData : 'MOSTRAR DATOS EIPPE',
-    eippeCrear : 'CREAR EIPPE',
-    eippeEditar : 'EDITAR EIPPE',
-    eippeReset : 'RESETEAR EIPPE',
-
-    eipcaGetData : 'MOSTRAR DATOS EIPCA',
-    eipcaCrear : 'CREAR EIPCA',
-    eipcaEditar : 'EDITAR EIPCA',
-    eipcaReset : 'RESETEAR EIPCA',
-
-    epcalGetData : 'MOSTRAR DATOS EPCAL',
-    epcalCrear : 'CREAR EPCAL',
-    epcalEditar : 'EDITAR EPCAL',
-    epcalReset : 'RESETEAR EPCAL',
-
-    eppertGetData : 'MOSTRAR DATOS EPPERT',
-    eppertCrear : 'CREAR EPPERT',
-    ppertEditar : 'EDITAR EPPERT',
-    ppertReset : 'RESETEAR EPPERT',
-
-    iaGetData : 'MOSTRAR DATOS IA',
-    iaCrear : 'CREAR IA',
-    iaEditar : 'EDITAR IA',
-    iaReset : 'RESETEAR IA',
-
-    ifpeisGetData : 'MOSTRAR DATOS IFPEIS',
-    ifpeisCrear : 'CREAR IFPEIS',
-    ifpeisEditar : 'EDITAR IFPEIS',
-    ifpeisReset : 'RESETEAR IFPEIS',
-
-    ifaetGetData : 'MOSTRAR DATOS IFAET',
-    ifaetCrear : 'CREAR IFAET',
-    ifaetEditar : 'EDITAR IFAET',
-    ifaetReset : 'RESETEAR IFAET',
-    
-
+    modalLoading : 'CARGANDO MODAL CAMPO LISTA',
+    listaSubmit : 'GUARDANDO CAMPO LISTA',
+    modalClose : 'CERRANDO MODAL CAMPO LISTA',
+ 
     pGetLista : 'MOSTRAR LISTA PROYECTOS',
     pGetData : 'MOSTRAR DATOS P',
     pCrear : 'CREAR P',
