@@ -6,7 +6,7 @@ import { ModalPalabrasClave } from './Proyecto/ModalPalabrasClave'
 export const Main = () => {
     const {showModal} = useSelector(state=>state.modalReducer)
   return (
-    <div className='container'>
+    <div className='container-fluid'>
          {showModal && <ModalPalabrasClave  _titulo='Agregar Palabra Clave'/>}
         <FormProyecto />
     </div>

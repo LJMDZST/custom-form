@@ -50,7 +50,7 @@ export const CampoLista = ({ _estadoInicialModal={} ,compListaRegistros, _leyend
         <div className='col'>
             {_leyenda}
         </div>
-        <div className='col'>
+        <div className='col d-flex justify-content-end'>
         
             <button className='btn btn-primary' onClick={handleAddRegistro} >{_labelAgregarRegistro}</button>
         

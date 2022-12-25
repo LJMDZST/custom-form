@@ -25,10 +25,11 @@ export const Campo = (_props = {}) => {
     {
       campos &&
       <div className='row'>
-         <div className='col'>
+         <div className='col-3'>
             <label className='form-label'> { _props.etiqueta }</label>
+            <p>{_props.msgAyuda}</p>
          </div>
-         <div className='col'>
+         <div className='col-9'>
           { _props.type === 'booleano' && <CampoBooleano  {..._props}value = {campos ? campos[_props.name].value : ''} onChange={handleChange}  />}        
           { _props.type === 'textarea' &&  <CampoTextArea  {..._props}value = {campos ? campos[_props.name].value : ''} onChange={handleChange}  />}
           { _props.type === 'select' && <CampoSelect {..._props} value = {campos ? campos[_props.name].value : ''} onChange={handleChange}  />}

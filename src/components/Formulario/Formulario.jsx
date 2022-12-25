@@ -23,7 +23,10 @@ export const Formulario = ({children, _titulo = '', _estadoInicial = {}, _handle
           {/* Tiene uno o mas <Campo />  */
             children
           }
-        <button type={'submit'}>Registrar </button>
+          <div  className='d-flex justify-content-center'>
+          <button type={'submit'}>Registrar </button>
+          </div>
+       
       </form>
     </ContextFormulario.Provider>
   )

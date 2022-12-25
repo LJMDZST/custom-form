@@ -26,27 +26,20 @@ export const FormProyecto = () => {
 
 
   return (
-    <section className='p-2 bg-light d-flex justify-content-center'>
-        <div className='row'>
-
-        </div>
-
-        <div className='row row-cols-1'>
-            {/* <div className='col'>
-                {/* <NavFormProyecto _seccionElegida={seccionElegida} _setSeccionElegida={setSeccionElegida} _secciones={secciones} />
-            </div> */}
-            <div className='col'>
-              
-              {/* { (!cargandoForm )&& seccionElegida === 'Datos Generales' && <FormProyectoSec1 /> } */}
-              {/* { (!cargandoForm )&& seccionElegida === 'Equipo Extension' && <FormProyectoSec2 /> }
-              { (!cargandoForm )&& seccionElegida === 'Ver que poner' && <FormProyectoSec4  /> } */}
-              <FormProyectoSec1 />
-            </div>
+    <div className='row row-cols-1 d-flex justify-content-center'>
+        {/* <div className='col'>
+            {/* <NavFormProyecto _seccionElegida={seccionElegida} _setSeccionElegida={setSeccionElegida} _secciones={secciones} />
+        </div> */}
+        <div className='col '>
+          <div className='container'>
+             {/* { (!cargandoForm )&& seccionElegida === 'Datos Generales' && <FormProyectoSec1 /> } */}
+            {/* { (!cargandoForm )&& seccionElegida === 'Equipo Extension' && <FormProyectoSec2 /> }
+            { (!cargandoForm )&& seccionElegida === 'Ver que poner' && <FormProyectoSec4  /> } */}
+            <FormProyectoSec1 />
           </div>
+         
+        </div>
+      </div>
 
-
-
-
-    </section>
   )
 }

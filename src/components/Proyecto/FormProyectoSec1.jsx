@@ -34,12 +34,11 @@ export const FormProyectoSec1 = () => {
           }}
           _titulo = 'Form Proyecto Seccion Datos Generales' 
         >
+          <Campo etiqueta='Modalidad del proyecto' name='tipoProyecto_Id' type='select' opciones={[{id:'',nom:'seleccione'}]} />
           <Campo etiqueta='Linea/s Temática/s' name='lLineaTematica' type='select' multiple={true} opciones={[{id:'',nom:'seleccione'}]} />
           <Campo etiqueta='Programas de Extension' name='lProgramaExtension' type='select' opciones={[{id:'',nom:'seleccione'}]} />
-          
+          <Campo etiqueta='Unidad Académica' name = 'unidadAcademica_id' type='select' opciones={[{id:'',nom:'seleccione'}]} />
           <Campo etiqueta='Duracion'  name='bianual' nomopc1='bianual' nomopc2='anual'  type='booleano' />
-          
-          
           <CampoLista _estadoInicialModal={{ palabra : ''}} compListaRegistros = {<ListaPalabras />} _leyenda='Palabras Clave' _nom='lPalabrasClave'  _labelAgregarRegistro = 'Agregar Palabra' />
         </Formulario>
       }
